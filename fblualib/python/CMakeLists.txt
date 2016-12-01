@@ -56,16 +56,13 @@ IF(NOT lib_luaT)
   MESSAGE(FATAL_ERROR "libluaT not found")
 ENDIF()
 
-INSTALL(FILES src/luaconf.h src/lua.h src/lauxlib.h src/lualib.h
-              src/lua.hpp src/luajit.h
-  DESTINATION "${INSTALL_INCLUDE_SUBDIR}")
-
 INCLUDE_DIRECTORIES(
   ${GLOG_INCLUDE_DIR}
   ${THPP_INCLUDE_DIR}
   ${PYTHON_INCLUDE_DIRS}
   ${NUMPY_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  src
 )
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
