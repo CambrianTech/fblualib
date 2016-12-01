@@ -26,7 +26,7 @@ MLI_SET_DEPTH(1)
 
 FIND_PACKAGE(Glog REQUIRED)
 FIND_PACKAGE(Torch REQUIRED)
-FIND_PACKAGE(Lua51 REQUIRED) 
+FIND_PACKAGE(Lua53 REQUIRED) 
 
 SET(CMAKE_PREFIX_PATH ${Torch_INSTALL_PREFIX})
 FIND_PACKAGE(THPP REQUIRED)
@@ -55,21 +55,6 @@ FIND_LIBRARY(lib_luaT luaT HINTS ${Torch_INSTALL_LIB})
 IF(NOT lib_luaT)
   MESSAGE(FATAL_ERROR "libluaT not found")
 ENDIF()
-
-INCLUDE_DIRECTORIES(BEFORE ${CMAKE_CURRENT_BINARY_DIR} src)
-CONFIGURE_FILE(src/luaconf.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h src/lua.h src/lauxlib.h src/lualib.h src/lua.hpp
-  DESTINATION "${INSTALL_INCLUDE_SUBDIR}")
-
-SET(SRC_LIB src/lapi.c src/lauxlib.c src/lbaselib.c src/lbitlib.c src/lcode.c src/lcorolib.c src/lctype.c
-  src/ldblib.c src/ldebug.c src/ldo.c src/ldump.c src/lfunc.c src/lgc.c src/linit.c src/liolib.c src/llex.c
-  src/lmathlib.c src/lmem.c src/loadlib.c src/lobject.c src/lopcodes.c src/loslib.c src/lparser.c
-  src/lstate.c src/lstring.c src/lstrlib.c src/ltable.c src/ltablib.c src/ltm.c
-  src/lundump.c src/lutf8lib.c src/lvm.c src/lzio.c
-  ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h)
-
-ADD_LIBRARY(liblua SHARED ${SRC_LIB})
 
 INCLUDE_DIRECTORIES(
   ${GLOG_INCLUDE_DIR}
