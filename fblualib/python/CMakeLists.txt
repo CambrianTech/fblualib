@@ -62,6 +62,7 @@ INCLUDE_DIRECTORIES(
   ${PYTHON_INCLUDE_DIRS}
   ${NUMPY_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  ~/torch/exe/luajit-rocks/lua-5.3/src
 )
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
