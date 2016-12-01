@@ -56,27 +56,13 @@ IF(NOT lib_luaT)
   MESSAGE(FATAL_ERROR "libluaT not found")
 ENDIF()
 
-INCLUDE_DIRECTORIES(BEFORE ${CMAKE_CURRENT_BINARY_DIR} src)
-CONFIGURE_FILE(src/luaconf.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h src/lua.h src/lauxlib.h src/lualib.h src/lua.hpp
-  DESTINATION "${INSTALL_INCLUDE_SUBDIR}")
-
-SET(SRC_LIB src/lapi.c src/lauxlib.c src/lbaselib.c src/lbitlib.c src/lcode.c src/lcorolib.c src/lctype.c
-  src/ldblib.c src/ldebug.c src/ldo.c src/ldump.c src/lfunc.c src/lgc.c src/linit.c src/liolib.c src/llex.c
-  src/lmathlib.c src/lmem.c src/loadlib.c src/lobject.c src/lopcodes.c src/loslib.c src/lparser.c
-  src/lstate.c src/lstring.c src/lstrlib.c src/ltable.c src/ltablib.c src/ltm.c
-  src/lundump.c src/lutf8lib.c src/lvm.c src/lzio.c
-  ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h)
-
-ADD_LIBRARY(liblua SHARED ${SRC_LIB})
-
 INCLUDE_DIRECTORIES(
   ${GLOG_INCLUDE_DIR}
   ${THPP_INCLUDE_DIR}
   ${PYTHON_INCLUDE_DIRS}
   ${NUMPY_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  src
 )
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
