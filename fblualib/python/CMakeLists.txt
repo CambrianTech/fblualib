@@ -55,6 +55,10 @@ IF(NOT lib_luaT)
   MESSAGE(FATAL_ERROR "libluaT not found")
 ENDIF()
 
+INSTALL(FILES src/luaconf.h src/lua.h src/lauxlib.h src/lualib.h
+              src/lua.hpp src/luajit.h
+  DESTINATION "${INSTALL_INCLUDE_SUBDIR}")
+
 INCLUDE_DIRECTORIES(
   ${GLOG_INCLUDE_DIR}
   ${THPP_INCLUDE_DIR}
