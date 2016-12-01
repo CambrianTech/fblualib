@@ -27,7 +27,10 @@
 #include "Debug.h"
 #ifndef NDEBUG
 #include <folly/ThreadLocal.h>
+
 #endif
+
+crash
 
 namespace fblualib {
 namespace python {
